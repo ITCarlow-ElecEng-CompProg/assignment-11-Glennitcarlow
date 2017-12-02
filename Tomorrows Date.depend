@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1512078394 source:e:\second year\computer programming - mike mahon\exercises\exercises c++\exercise 11 - tomorrows date\tomorrows date\main.cpp
+	<iostream>
+	<iomanip>
+	<cstdio>
+	<windows.h>
+	<cmath>
+
+1512078394 source:f:\second year\computer programming - mike mahon\exercises\exercises c++\exercise 11 - tomorrows date\tomorrows date\main.cpp
+	<iostream>
+	<iomanip>
+	<cstdio>
+	<windows.h>
+	<cmath>
+
