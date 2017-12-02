@@ -1,109 +1,92 @@
- /*
-    Glenn Ahearne
+/*Glenn Ahearne
     Exercise 11
-     Date Structure
-  */
+    Tomorrows Date
+*/
 
-/**preprocessive directives*/
+/**< Preprocessor directives */
 #include <iostream>
 #include <iomanip>
+#include <math.h>
 #include <cstdio>
 #include <windows.h>
-#include <cmath>
 
 using namespace std;
 
-/**structure*/
+/** structure containing day, month and year */
 struct date
 {
-	int month;
-	int day;
-	int year;
+    int day ;
+    int month ;
+    int year ;
 };
-/** sub functions declarations*/
-int checkLeapYear(int);
-void getCurrentDate(struct date &);
 
+/** Main function */
 int main()
 {
-    /** print heading*/
-    cout << " Date Structure" << endl;
-
-    /**variables declaired type struct and int*/
-    struct date today, tomorrow;
     int monthlength [12] = {31, 28, 31, 30, 30, 30, 31, 31, 30, 31, 30, 31};
 
-    /** calling funtion current date*/
-    getCurrentDate(today);
+    struct date today, tomorrow;
 
-    /** displays todays date*/
-    cout << "\n\nToday's date is " << today.day  << "/" << today.month<< "/" << today.year << endl;
+    cout << "\nEnter Todays Date\n\n" ;
+    cout << "\nDay :\t" ;
+    cin >> today.day ;
+    cout << "\nMonth :\t" ;
+    cin >> today.month;
+    cout << "\nYear :\t" ;
+    cin >> today.year;
 
-    /** how to increment date by a day, keeping the same month and year*/
-    tomorrow.day=today.day+1;
-    tomorrow.month = today.month;
-    tomorrow.year = today.year;
+    /**< Display todays date */
+    cout << "\nTodays Date is: \t" << today.day << "/" << today.month << "/" << today.year << endl;
 
-    /** calling function checkleapyear*/
-    monthlength[1] = checkLeapYear(today.year);
 
-    /** if statement to increment date for a new month*/
-    if(tomorrow.day > monthlength[today.month-1])
+    if(today.year % 4 == 0)
+
     {
-        tomorrow.day = 1;
-        tomorrow.month = today.month +1;
-        tomorrow.year = today.year;
-    }
-    /** if statement to increment date for a new year*/
-    if (today.month >= 12)
-    {
-        tomorrow.month = 01;
-        tomorrow.year = today.year + 1;
-    }
+        if(today.year % 100 == 0)
 
-    /** displays tomorrows date*/
-    cout << "\n\nTomorrows Date is :" << tomorrow.day << "/" << tomorrow.month << "/" << tomorrow.year << endl;
-
-    return 0;
-}
-
-/** function to get current date*/
-void getCurrentDate(struct date &today)
-{
-    /** allows user input todays date*/
-    cout<< "Enter todays day (dd)" <<endl;
-    cin>> today.day ;
-
-    cout<< "Enter todays month (mm)" <<endl;
-    cin>> today.month ;
-
-    cout<< "Enter todays year (yyyy) " <<endl;
-    cin>> today.year ;
-
-    return;
-}
-
-/** function to check leap year*/
-int checkLeapYear(int year)
-{
-    int days = 28;
-
-    /** if statement to check if today.year is a leap year*/
-    if (year % 4 == 0)
-    {
-        if (year % 100 == 0)
         {
-            if (year % 400 == 0)
+            if(today.year % 400 == 0)
+
             {
-                days = 29;
+                monthlength[1] = 29;
             }
 
         }
+
         else
-        { /**only by 4, not by 100*/
-            days = 29;
+
+        {
+            monthlength[1] = 29;
         }
     }
 
-    return days;
+    if(today.day >= monthlength[today.month -1])
+
+    {
+        if (today.month == 12)
+        {
+            tomorrow.day = 1;
+            tomorrow.month = 1;
+            tomorrow.year = today.year + 1;
+        }
+        else
+        {
+            tomorrow.day = 1;
+            tomorrow.month = today.month + 1;
+            tomorrow.year = today.year;
+        }
+    }
+    else
+    {
+        tomorrow.day = today.day +1;
+        tomorrow.month = today.month;
+        tomorrow.year = today.year;
+    }
+
+
+    /**< Display tomorrows date */
+    cout << "\nTomorrows Date is :\t" << tomorrow.day << "/" << tomorrow.month << "/" << tomorrow.year << endl;
+
+
+    return 0;
 }
